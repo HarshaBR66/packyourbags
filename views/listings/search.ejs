@@ -21,11 +21,27 @@
 
   .search-result-card .card-title {
     font-size: 1.25rem; /* Increase font size of the title */
+    margin-bottom: 0.5rem; /* Add space below the title */
   }
 
   .search-result-card .card-text {
     margin-bottom: 0.5rem; /* Add some space below each text paragraph */
     font-size: 1rem; /* Adjust font size of the text */
+    overflow-wrap: break-word; /* Ensure long words break properly */
+  }
+
+  @media (max-width: 767px) {
+    .search-result-card {
+      height: auto; /* Allow card height to adjust on smaller screens */
+    }
+
+    .search-result-card .card-img-top {
+      height: auto; /* Allow image height to adjust on smaller screens */
+    }
+
+    .search-result-card .card-body {
+      height: auto; /* Allow card body height to adjust on smaller screens */
+    }
   }
 </style>
 
@@ -33,20 +49,20 @@
   <h1>Search Results for "<%= searchQuery %>"</h1>
   <div class="row mt-3">
     <% if (listings.length === 0) { %>
-      <div class="col-8 offset-2">
+      <div class="col-12 col-md-8 offset-md-2">
         <h2>No matching results found for your search.</h2>
         <h3>You can find some interesting places by <a href="/listings" style="color: black;">clicking here</a></h3>
       </div>
     <% } else { %>
       <% listings.forEach(listing => { %>
-        <div class="col-8 offset-2">
+        <div class="col-12 col-md-8 offset-md-2 mb-3">
           <a href="/listings/<%= listing._id %>" style="text-decoration: none;">
-            <div class="card mb-3 search-result-card">
+            <div class="card search-result-card">
               <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
               <div class="card-body">
                 <h5 class="card-title"><%= listing.title %></h5>
                 <p class="card-text"><%= listing.description %></p>
-                <p class="card-text">Price: <%= listing.price %></p>
+                <p class="card-text">Price: &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
                 <p class="card-text">Location: <%= listing.location %>, <%= listing.country %></p>
               </div>
             </div>
