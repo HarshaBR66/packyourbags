@@ -30,11 +30,15 @@
           <a class="nav-link" href="/listings">Explore</a>
         </div>
         <div class="navbar-nav ms-auto">
+        <form method="get" action="/search">
+        <div class="navbar-nav ms-auto">
           <form class="d-flex form-control" role="search" id="search-form" >
-            <input class="form-control me-2 search-input" type="search" placeholder="Search destinations" id="searchInput">
+            <input class="form-control me-2 search-input" type="search" placeholder="Search destinations" id="searchInput" name="query">
             <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
           </form>
         </div>
+      </div>
+        </form> 
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="/listings/new">Add new listing</a>
           <% if(!currUser) { %>

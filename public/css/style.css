@@ -107,3 +107,7 @@ body{
     width: 100vh;
     margin-bottom: 2rem;
 }
+
+.searchtitle {
+    text-decoration: none !important;
+}
