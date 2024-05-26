@@ -21,8 +21,8 @@ const { isLoggedIn } = require("./middleware.js");
 const Listing= require("./models/listing.js")
 
 
-// const dbUrl = process.env.ATLASDB_URL;
-const mongoUrl = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL;
+
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -38,7 +38,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(mongoUrl);
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -49,7 +49,7 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
-  mongoUrl: mongoUrl,
+  mongoUrl: dbUrl,
   crypto: {
     secret: process.env.SECRET
   },
